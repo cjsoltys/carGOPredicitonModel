@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>History Page</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="navbar.css">
+	<style>
+		body{
+			margin: 0;
+			font-family: Arial;
+		}
+		
+		.flex-container{
+			display:flex;
+			justify-content:flex-start;
+			align-items:stretch;
+			flex-wrap:nowrap;
+			padding: 20px;
+		}
+		.graph-area{
+			display: inline-block;
+			vertical-align: top;
+			margin-right: 20px;
+		}
+		
+		.graph-area{
+			min-height:750px;
+			flex-basis:70%;
+		}
+		
+		.time-range{
+			min-height:750px;
+			flex-basis:30%;
+			border-left: 2px solid #707070;
+		}
+		
+	</style>
+</head>
+
+<body>
+	<div class="navbar" id="nb">
+		<img class="cargoLogo" src="cargo-logo.png"/>
+		<a href="home.html">Home</a>
+		<a href="history.html">History</a>
+		<a href="javascript:void(0);" style="font-size:20px;" class="icon" onclick="myFunction()">&#9776;</a>
+	</div>
+	
+	<div class = "flex-container">
+		<div class="graph-area">
+			<h2>Graph(s) Section</h2>
+		</div>
+		<div class="time-range">
+			<h2>Time Range Section</h2>
+		</div>
+	</div>
+	
+	<div class="vertical-line"></div>
+
+	<script>
+		function myFunction() {
+			var x = document.getElementById("nb");
+			if (x.className === "navbar") {
+				x.className += " responsive";
+			} else {
+				x.className = "navbar";
+			}
+		}
+	</script>
+</body>
+</html>

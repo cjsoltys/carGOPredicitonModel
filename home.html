@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Home Page</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="navbar.css">
+	<style>
+		body{
+			margin: 0;
+			font-family: Arial;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="navbar" id="nb">
+		<img class="cargoLogo" src="cargo-logo.png"/>
+		<a href="home.html">Home</a>
+		<a href="history.html">History</a>
+		<a href="javascript:void(0);" style="font-size:20px;" class="icon" onclick="myFunction()">&#9776;</a>
+	</div>
+
+	<div style="padding-left:16px">
+		<h2>Home Page</h2>
+		<p>Info</p>
+	</div>
+
+	<script>
+		function myFunction() {
+			var x = document.getElementById("nb");
+			if (x.className === "navbar") {
+				x.className += " responsive";
+			} else {
+				x.className = "navbar";
+			}
+		}
+	</script>
+</body>
+</html>
