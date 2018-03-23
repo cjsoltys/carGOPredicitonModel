@@ -4,7 +4,25 @@
 	<title>History Page</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="navbar.css">
-
+	
+	<!-- JQuery datepicker compared to the HTML5 one I coded. This one maintains a consistent style across browsers
+	and works on all browsers unlike the HTML5 one-->
+	<link rel="stylesheet" href="jquery-ui.css">
+	  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+	  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	  <script>
+	  $( function() {
+		$( "#datepicker" ).datepicker({
+		  showOn: "button",
+		  buttonImage: "calendar-icon.png",
+		  buttonImageOnly: true,
+		  buttonText: "Select date",
+		  minDate: new Date(2017, 10, 01),
+		  maxDate: new Date()
+		});
+	  } );
+	  </script>
+	
 	<style>
 		body{
 			margin: 0;
@@ -130,6 +148,13 @@
 				</table>
 				
 				<button class="submitBut" type="button" onclick="alert('Button Pressed')">Submit</button>
+				
+				
+				<br><br>
+				<!-- Testing JQuery datepicker. Need to limit allowed user input and disable keyboard input-->
+				<p style="font-size:12px; margin:0em">Test JQuery datepicker.<br>
+				Should have consistent style across browsers unlike the ones above</p>
+				<input readonly type="text" value="11/01/2017" name="start" min="2017-11-01" id="datepicker">
 			</div>
 		</div>
 	</div>
