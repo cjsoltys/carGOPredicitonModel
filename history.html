@@ -11,27 +11,54 @@
 			font-family: Arial;
 		}
 		
+		
+		.labels{
+			margin: 0px;
+			text-align:right;
+			font-size: 20px;
+		}
+		
 		.flex-container{
 			display:flex;
 			justify-content:flex-start;
 			align-items:stretch;
 			flex-wrap:nowrap;
 			padding: 20px;
+			margin-top:20px;
 		}
 		
 		.graph-area{
 			min-height:750px;
-			flex-basis:70%;
+			flex-basis:80%;
 		}
 		
-		.time-range{
+		.time-range-section{
 			min-height:750px;
-			flex-basis:30%;
-			border-left: 2px solid #707070;
+			flex-basis:20%;
+			border-left: 2px solid #a8a8a8;
+		}
+		
+		.time-range-content{
+			margin: 30px 40px;
+		}
+		
+		.date-range-fields{
+			margin: 30px 30px;
+		}
+
+		.date-range-fields td {
+			padding-bottom: 20px;
 		}
 		
 		.calendar{
+			font-size: 15px;
 			width: 150px;
+		}
+		
+		.calendar::-webkit-datetime-edit-month-field,
+		.calendar::-webkit-datetime-edit-day-field, 
+		.calendar::-webkit-datetime-edit-year-field {
+			background-color: transparent;
 		}
 		
 		.calendar::-webkit-inner-spin-button, .calendar::-webkit-clear-button {
@@ -42,7 +69,7 @@
 			edit: false;
 		}
 			
-		.calendar::-webkit-calendar-picker-indicator {
+		.calendar::-webkit-calendar-picker-indicator{
 			color: rgba(0, 0, 0, 0);
 			opacity: 1;
 			background: url(calendar-icon.png) no-repeat;
@@ -50,6 +77,12 @@
 			width: 20px;
 			height: 20px;
 			border-width: thin;
+		}
+		
+		.submitBut {
+			height: 30px;
+			width: 70px;
+			margin-left: 210px;
 		}
 		
 		
@@ -68,12 +101,36 @@
 		<div class="graph-area">
 			<h2>Graph(s) Section</h2>
 		</div>
-		<div class="time-range">
-			<h2>Time Range Section</h2>
-			<form>
-				<!-- calendar ranges from start of carGO data to current date (from JS)-->
-				<input class="calendar" value="2017-11-01" type="date" name="start" min="2017-11-01" id="date">
-			</form>
+		<div class="time-range-section">
+			<div class="time-range-content">
+				<h2>Date Range</h2>
+				<table style="margin-bottom: 0px" class="date-range-fields">
+					<tr>
+						<td style="padding-right: 20px;">
+							<p class="labels">Start:</p>
+						</td>
+						<td>
+							<form>								
+								<!-- calendar ranges from start of carGO data to current date (from JS)-->
+								<input class="calendar" value="2017-11-01" type="date" name="start" min="2017-11-01" id="startdate">
+							</form>
+						</td>
+					</tr>
+					<tr>
+						<td style="padding-right: 20px">
+							<p class="labels">End:</p>	
+						</td>
+						<td>
+							<form>
+								<!-- calendar ranges from start of carGO data to current date (from JS)-->
+								<input class="calendar" value="2017-11-02" type="date" name="start" min="2017-11-01" id="enddate">
+							</form>
+						</td>
+					</tr>
+				</table>
+				
+				<button class="submitBut" type="button" onclick="alert('Button Pressed')">Submit</button>
+			</div>
 		</div>
 	</div>
 	
@@ -102,7 +159,20 @@
 		} 
 
 		today = yyyy+'-'+mm+'-'+dd;
-		document.getElementById("date").setAttribute("max", today);
+		document.getElementById("startdate").setAttribute("max", today);
+		document.getElementById("enddate").setAttribute("max", today);
+	</script>
+	
+	
+	<!-- Temp fix so datepicker works in other browsers -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	<script src="http://cdn.jsdelivr.net/webshim/1.12.4/extras/modernizr-custom.js"></script>
+	<script src="http://cdn.jsdelivr.net/webshim/1.12.4/polyfiller.js"></script>
+	<script>
+	  webshims.setOptions('waitReady', false);
+	  webshims.setOptions('forms-ext', {type: 'date'});
+	  webshims.setOptions('forms-ext', {type: 'time'});
+	  webshims.polyfill('forms forms-ext');
 	</script>
 </body>
 </html>
