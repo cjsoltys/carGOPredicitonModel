@@ -4,6 +4,7 @@
 	<title>History Page</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="navbar.css">
+
 	<style>
 		body{
 			margin: 0;
@@ -29,6 +30,29 @@
 			border-left: 2px solid #707070;
 		}
 		
+		.calendar{
+			width: 150px;
+		}
+		
+		.calendar::-webkit-inner-spin-button, .calendar::-webkit-clear-button {
+			display: none; 
+		}
+		
+		.calendar::-webkit-datetime-edit{
+			edit: false;
+		}
+			
+		.calendar::-webkit-calendar-picker-indicator {
+			color: rgba(0, 0, 0, 0);
+			opacity: 1;
+			background: url(calendar-icon.png) no-repeat;
+			display: block;
+			width: 20px;
+			height: 20px;
+			border-width: thin;
+		}
+		
+		
 	</style>
 </head>
 
@@ -46,6 +70,10 @@
 		</div>
 		<div class="time-range">
 			<h2>Time Range Section</h2>
+			<form>
+				<!-- calendar ranges from start of carGO data to current date (from JS)-->
+				<input class="calendar" value="2017-11-01" type="date" name="start" min="2017-11-01" id="date">
+			</form>
 		</div>
 	</div>
 	
@@ -60,6 +88,21 @@
 				x.className = "navbar";
 			}
 		}
+		
+		//Set date range's max value to current date
+		var today = new Date();
+		var dd = today.getDate();
+		var mm = today.getMonth()+1;
+		var yyyy = today.getFullYear();
+		if(dd<10){
+			dd='0'+dd
+		} 
+		if(mm<10){
+			mm='0'+mm
+		} 
+
+		today = yyyy+'-'+mm+'-'+dd;
+		document.getElementById("date").setAttribute("max", today);
 	</script>
 </body>
 </html>
