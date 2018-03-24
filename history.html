@@ -21,6 +21,17 @@
 		  maxDate: new Date()
 		});
 	  } );
+	  
+	    $( function() {
+		$( "#datepicker2" ).datepicker({
+		  showOn: "button",
+		  buttonImage: "calendar-icon.png",
+		  buttonImageOnly: true,
+		  buttonText: "Select date",
+		  minDate: new Date(2017, 10, 01),
+		  maxDate: new Date()
+		});
+	  } );
 	  </script>
 	
 	<style>
@@ -60,42 +71,12 @@
 			margin: 30px 40px;
 		}
 		
-		.date-range-fields{
-			margin: 30px 30px;
-		}
+		
 
 		.date-range-fields td {
 			padding-bottom: 20px;
 		}
-		
-		.calendar{
-			font-size: 15px;
-			width: 150px;
-		}
-		
-		.calendar::-webkit-datetime-edit-month-field,
-		.calendar::-webkit-datetime-edit-day-field, 
-		.calendar::-webkit-datetime-edit-year-field {
-			background-color: transparent;
-		}
-		
-		.calendar::-webkit-inner-spin-button, .calendar::-webkit-clear-button {
-			display: none; 
-		}
-		
-		.calendar::-webkit-datetime-edit{
-			edit: false;
-		}
-			
-		.calendar::-webkit-calendar-picker-indicator{
-			color: rgba(0, 0, 0, 0);
-			opacity: 1;
-			background: url(calendar-icon.png) no-repeat;
-			display: block;
-			width: 20px;
-			height: 20px;
-			border-width: thin;
-		}
+
 		
 		.submitBut {
 			height: 30px;
@@ -128,10 +109,7 @@
 							<p class="labels">Start:</p>
 						</td>
 						<td>
-							<form>								
-								<!-- calendar ranges from start of carGO data to current date (from JS)-->
-								<input class="calendar" value="2017-11-01" type="date" name="start" min="2017-11-01" id="startdate">
-							</form>
+							<input readonly type="text" value="11/01/2017" name="start" min="2017-11-01" id="datepicker">
 						</td>
 					</tr>
 					<tr>
@@ -139,10 +117,48 @@
 							<p class="labels">End:</p>	
 						</td>
 						<td>
-							<form>
-								<!-- calendar ranges from start of carGO data to current date (from JS)-->
-								<input class="calendar" value="2017-11-02" type="date" name="start" min="2017-11-01" id="enddate">
-							</form>
+							<input readonly type="text" value="11/01/2017" name="start" min="2017-11-01" id="datepicker2">
+						</td>
+					</tr>
+					<tr>
+						<td style="padding-right: 20px;">
+							<p class="labels">Time:</p>
+						</td>
+						<td>
+							<table>
+								<tr>
+									<td>
+										HH:<input style="width:55%; " type="text" list="hours">
+										<datalist id="hours">
+											<option value="09">
+											<option value="10">
+											<option value="11">
+											<option value="12">
+											<option value="13">
+											<option value="14">
+											<option value="15">
+											<option value="16">
+											<option value="17">
+											<option value="18">
+											<option value="19">
+											<option value="20">
+											<option value="21">
+											<option value="22">
+											<option value="23">
+										</datalist>
+									</td>
+									<td>
+										MM:<input style="width:55%;" type="text" list="minutes">
+										<datalist id="minutes">
+											<option value="00">
+											<option value="15">
+											<option value="30">
+											<option value="45">
+										</datalist>
+									</td>
+								</tr>
+							
+							</table>
 						</td>
 					</tr>
 				</table>
@@ -151,10 +167,6 @@
 				
 				
 				<br><br>
-				<!-- Testing JQuery datepicker. Need to limit allowed user input and disable keyboard input-->
-				<p style="font-size:12px; margin:0em">Test JQuery datepicker.<br>
-				Should have consistent style across browsers unlike the ones above</p>
-				<input readonly type="text" value="11/01/2017" name="start" min="2017-11-01" id="datepicker">
 			</div>
 		</div>
 	</div>
