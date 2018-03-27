@@ -11,7 +11,7 @@ create view status_times_pivot as (
         min(Delivering) as Delivering,
         min(Delivered) as Delivered
 	from status_times_extended
-    group by OrderID
+    group by OrderID 
 );
 
 select * from status_times_pivot;
