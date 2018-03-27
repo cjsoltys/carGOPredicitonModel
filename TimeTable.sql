@@ -1,17 +1,11 @@
 use cargo;
 
-create view status_times_pivot as (
-	select
-		OrderID, location_id, 
-        min(Submitted) as Submitted, /*min can be used since there is only 1 value and 6 nulls*/
-        min(Processing) as Processing,
-        min(Requesting) as Requesting,
-        min(Accepted) as Accepted,
-        min(Arrived) as Arrived,
-        min(Delivering) as Delivering,
-        min(Delivered) as Delivered
-	from status_times_extended
-    group by OrderID
-);
-
-select * from status_times_pivot;
+create table Time as(
+select location_id, 
+	AVG(TIME_TO_SEC(TIMEDIFF(Processing, Submitted))) as 'Submitted_Time',
+    AVG(TIME_TO_SEC(TIMEDIFF(Requesting, Processing))) as 'Processing_Time',
+    AVG(TIME_TO_SEC(TIMEDIFF(Accepted, Requesting))) as 'Requesting_Time',
+    AVG(TIME_TO_SEC(TIMEDIFF(Arrived, Accepted))) as 'Accepted_Time',
+    AVG(TIME_TO_SEC(TIMEDIFF(Delivering, Arrived))) as 'Arrived_Time',
+    AVG(TIME_TO_SEC(TIMEDIFF(Delivered, Delivering))) as 'Delivery_Time'
+    from status_times_pivot group by location_id);
